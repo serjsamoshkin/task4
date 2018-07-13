@@ -1,6 +1,6 @@
 package ua.testing.task4.controller;
 
-import ua.testing.task4.DataBase.someSQL;
+import ua.testing.task4.dataBase.SomeSQL;
 import ua.testing.task4.controller.input.ConsoleInput;
 import ua.testing.task4.model.annotation.Bundle;
 import ua.testing.task4.model.annotation.Ref;
@@ -28,9 +28,9 @@ public class QuestionnaireController implements Controller{
         Questionnaire questionnaire = new Questionnaire();
         loopOverFields(Questionnaire.class, questionnaire);
 
-        someSQL.setData(questionnaire);
+        SomeSQL.setData(questionnaire);
 
-        System.out.println(someSQL.getData());
+        System.out.println(SomeSQL.getData());
 
 
     }

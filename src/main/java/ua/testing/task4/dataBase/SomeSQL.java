@@ -1,4 +1,4 @@
-package ua.testing.task4.DataBase;
+package ua.testing.task4.dataBase;
 
 import ua.testing.task4.model.entity.questionnaire.Questionnaire;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class someSQL {
+public class SomeSQL {
     volatile static Set<Questionnaire> db = new HashSet<>();
 
     public synchronized static void setData(Questionnaire questionnaire){
