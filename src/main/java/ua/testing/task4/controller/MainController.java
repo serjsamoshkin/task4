@@ -2,20 +2,23 @@ package ua.testing.task4.controller;
 
 import ua.testing.task4.controller.input.ConsoleInput;
 import ua.testing.task4.view.ConsoleView;
-import ua.testing.task4.view.Information;
-import ua.testing.task4.view.localization.LocManager;
-import ua.testing.task4.view.localization.Local;
-import ua.testing.task4.view.localization.ResourceManager;
-import ua.testing.task4.view.menu.Menu;
-import ua.testing.task4.view.util.BundleKey;
-import ua.testing.task4.view.util.LocGetter;
+import ua.testing.task4.view.output.InformationMessage;
+import ua.testing.task4.view.localization.processor.LocaleManager;
+import ua.testing.task4.view.localization.processor.Locale;
+import ua.testing.task4.view.localization.processor.ResourceManager;
+import ua.testing.task4.view.output.Menu;
+import ua.testing.task4.view.enumExtender.BundleKey;
+import ua.testing.task4.view.localization.LocalizedString;
 
+/**
+ * Main controller of the application
+ */
 public class MainController implements Controller{
     private ConsoleView view;
     private ConsoleInput inputController;
 
-    private ResourceManager interfaceLocManager = LocManager.INTERFACE.getResourceManager();
-    private ResourceManager regexResourceManager = LocManager.REGEX.getResourceManager();
+    private ResourceManager interfaceLocManager = LocaleManager.INTERFACE.getResourceManager();
+    private ResourceManager regexResourceManager = LocaleManager.REGEX.getResourceManager();
 
     public MainController(ConsoleView view, ConsoleInput inputController) {
         this.view = view;
@@ -24,15 +27,15 @@ public class MainController implements Controller{
 
     public void start(){
 
-        Local loc = getCommandFromEnum(Local.class, Information.GET_LOCALE);
+        Locale loc = getCommandFromEnum(Locale.class, InformationMessage.GET_LOCALE);
         interfaceLocManager.changeResource(loc.getLocale());
         regexResourceManager.changeResource(loc.getLocale());
 
-        Menu menu = getCommandFromEnum(Menu.class, Information.GREETING);
+        Menu menu = getCommandFromEnum(Menu.class, InformationMessage.GREETING);
 
         switch (menu){
-            case QUESTIONNAIRE:
-                new QuestionnaireController(view,
+            case NOTEBOOK:
+                new NotebookController(view,
                             inputController)
                         .start();
                 break;
@@ -42,24 +45,32 @@ public class MainController implements Controller{
 
     }
 
-    private<T extends Enum<T> & BundleKey> T getCommandFromEnum(Class<T> clazz, BundleKey quest){
+    /**
+     * Display header messages, loop over EnumConstants of clazz parameter and display localized representation of
+     * EnumConstant.
+     *
+     * @param clazz marker class
+     * @param headers {@code BundleKey} subclass
+     * @param <T> type of marker class
+     * @return EnumConstant selected by the user
+     */
+    private<T extends Enum<T> & BundleKey> T getCommandFromEnum(Class<T> clazz, BundleKey... headers){
 
         T[] values = clazz.getEnumConstants();
+        T command;
 
-        StringBuilder qString = new StringBuilder();
+        StringBuilder variants = new StringBuilder();
 
         int i = 1;
-        for (T val :
-                values) {
-
-            qString.append(i).append(" - ").append(LocGetter.getLocString(val)).append('\n');
+        for (T val : values) {
+            variants.append(i).append(" - ").append(LocalizedString.getLocString(val)).append('\n');
             i++;
         }
 
-        T command = null;
-
         while (true){
-            view.display(quest, qString.toString());
+            for (BundleKey header : headers) {
+                view.display(header, variants.toString());
+            }
 
             String input = inputController.getInput();
 
@@ -67,7 +78,7 @@ public class MainController implements Controller{
                 command = values[Integer.valueOf(input)-1];
                 break;
             }else {
-                view.display(Information.FORMAT_INCORRECT);
+                view.display(InformationMessage.FORMAT_INCORRECT);
             }
         }
 

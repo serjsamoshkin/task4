@@ -1,4 +1,4 @@
-package ua.testing.task4.model.annotation;
+package ua.testing.task4.view.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Bundle {
-    String name();
+public @interface Ref {
+    Class<?> clazz();
 }

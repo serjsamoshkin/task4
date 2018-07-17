@@ -1,9 +1,9 @@
-package ua.testing.task4.view;
+package ua.testing.task4.view.util;
 
 /**
  * Contains console output color cods.
  */
-public enum ConsolOutputColor {
+public enum ConsoleOutputColor {
     ANSI_RESET("\u001B[0m")
             {
                 boolean someMethod(int i) {
@@ -53,7 +53,7 @@ public enum ConsolOutputColor {
 
 private String color;
 
-        ConsolOutputColor(String color){
+        ConsoleOutputColor(String color){
         this.color=color;
         }
 

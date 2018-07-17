@@ -1,11 +1,11 @@
-package ua.testing.task4.view;
+package ua.testing.task4.view.output;
 
-import ua.testing.task4.view.util.BundleKey;
+import ua.testing.task4.view.enumExtender.BundleKey;
 
 /**
  * Contains variants of output to the user
  */
-public enum Information implements BundleKey{
+public enum InformationMessage implements BundleKey{
 
     GET_LOCALE("getLocale"),
     GREETING("greeting"),
@@ -15,7 +15,7 @@ public enum Information implements BundleKey{
 
     private String key;
 
-    Information(String key) {
+    InformationMessage(String key) {
         this.key = key;
     }
 

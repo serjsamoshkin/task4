@@ -1,11 +1,13 @@
-package ua.testing.task4.view.menu;
+package ua.testing.task4.view.output;
 
-import ua.testing.task4.view.util.BundleKey;
+import ua.testing.task4.view.enumExtender.BundleKey;
 
+/**
+ * Contains variants of main application menu
+ */
 public enum Menu implements BundleKey{
-    QUESTIONNAIRE("questionnaireMenu")
+    NOTEBOOK("notebookMenu")
     ,;
-
 
     private String key;
 

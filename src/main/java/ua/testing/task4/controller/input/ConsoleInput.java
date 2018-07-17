@@ -3,7 +3,7 @@ package ua.testing.task4.controller.input;
 import java.util.Scanner;
 
 /**
- * Used to get input commands from console
+ * Uses to get input commands from console
  */
 public class ConsoleInput {
 

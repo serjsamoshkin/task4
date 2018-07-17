@@ -1,50 +1,54 @@
 package ua.testing.task4.view;
 
-import ua.testing.task4.view.localization.LocManager;
-import ua.testing.task4.view.localization.ResourceManager;
-import ua.testing.task4.view.util.BundleKey;
-import ua.testing.task4.view.util.LocGetter;
+import ua.testing.task4.view.annotation.NoBundleAnnotationException;
+import ua.testing.task4.view.enumExtender.BundleKey;
+import ua.testing.task4.view.localization.LocalizedString;
+import ua.testing.task4.view.util.ConsoleOutputColor;
+
+import java.lang.reflect.Field;
 
 /**
  *  Contains output methods to interact with the user.
- *  Uses console for output.
+ *  Used console for output.
  */
 public class ConsoleView {
 
-
-
     public void display(BundleKey obj){
-        display(LocGetter.getLocString(obj));
+        display(LocalizedString.getLocString(obj));
     }
 
     public void display(BundleKey obj, String... params){
-        display(String.format(LocGetter.getLocString(obj), params));
+        display(String.format(LocalizedString.getLocString(obj), params));
     }
 
-    public void display(BundleKey obj, ConsolOutputColor color){
-        display(LocGetter.getLocString(obj), color);
+    public void display(BundleKey obj, ConsoleOutputColor color){
+        display(LocalizedString.getLocString(obj), color);
     }
 
-    public void display(BundleKey obj, ConsolOutputColor color, String... params){
-        display(String.format(LocGetter.getLocString(obj), params), color);
+    public void display(BundleKey obj, ConsoleOutputColor color, String... params){
+        display(String.format(LocalizedString.getLocString(obj), params), color);
+    }
+
+    public void display(Field field, LocalizedString.SubType subType) throws NoBundleAnnotationException{
+        display(LocalizedString.getLocString(field, subType));
     }
 
 
 
-    public void display(String message, ConsolOutputColor color, String... params){
+    private void display(String message, ConsoleOutputColor color, String... params){
         display(color + String.format(message, params));
     }
 
-    public void display(String message, ConsolOutputColor color){
+    private void display(String message, ConsoleOutputColor color){
         display(color + message);
     }
 
-    public void display(String message, String... params){
+    private void display(String message, String... params){
         display(String.format(message, params));
     }
 
 
-    public void display(String message){
+    private void display(String message){
         System.out.println( message);
     }
 
