@@ -49,7 +49,7 @@ public class NotebookController implements Controller{
         Field[] fields = clazz.getDeclaredFields();
 
 //        for (int i = 0; i < fields.length; i++) {
-        for (int i = 0; i < 5; i++) {// дальше не написал логику:)
+        for (int i = 0; i < 3; i++) {// дальше не написал логику:)
 
             Field field = fields[i];
             if (field.isAnnotationPresent(Bundle.class)){
