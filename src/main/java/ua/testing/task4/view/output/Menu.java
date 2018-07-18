@@ -6,8 +6,9 @@ import ua.testing.task4.view.enumExtender.BundleKey;
  * Contains variants of main application menu
  */
 public enum Menu implements BundleKey{
-    NOTEBOOK("notebookMenu")
-    ,;
+    NOTEBOOK("notebookMenu"),
+    REGISTRATION("registration"),
+    ;
 
     private String key;
 

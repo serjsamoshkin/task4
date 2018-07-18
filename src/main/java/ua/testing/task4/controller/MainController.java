@@ -33,14 +33,19 @@ public class MainController implements Controller{
 
         Menu menu = getCommandFromEnum(Menu.class, InformationMessage.GREETING);
 
-        switch (menu){
+        switch (menu) {
             case NOTEBOOK:
                 new NotebookController(view,
-                            inputController)
+                        inputController)
                         .start();
                 break;
-                default:
-                    throw new IllegalArgumentException();
+            case REGISTRATION:
+                new RegistrationController(view,
+                        inputController)
+                        .start();
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
     }

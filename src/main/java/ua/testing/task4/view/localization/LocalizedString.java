@@ -119,6 +119,7 @@ public class LocalizedString {
     public enum SubType{
         QUESTION("question"),
         REPRESENTATION("representation"),
+        INCORRECT("incorrect"),
         ;
 
         String value;

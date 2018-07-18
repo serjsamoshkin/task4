@@ -3,7 +3,7 @@ package ua.testing.task4.view.output;
 import ua.testing.task4.view.enumExtender.BundleKey;
 
 /**
- * Contains variants of output to the user
+ * Contains information variants of output, used for output in the main controller
  */
 public enum InformationMessage implements BundleKey{
 

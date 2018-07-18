@@ -49,7 +49,7 @@ public class ConsoleView {
 
 
     private void display(String message){
-        System.out.println( message);
+        System.out.println(message + ConsoleOutputColor.ANSI_WHITE);
     }
 
 }
